@@ -25,7 +25,7 @@ def preprocess_handler():
     df = pd.read_csv(DATA_FILE_PATH)
 
     # Remove unnecessary columns
-    df.drop(columns=columns_to_drop)
+    df = df.drop(columns=columns_to_drop)
 
     # save as csv
     df.to_csv(SANITIZED_DATA_FILE_PATH)
