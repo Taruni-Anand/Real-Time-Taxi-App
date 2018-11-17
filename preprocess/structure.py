@@ -1,10 +1,14 @@
-from pyspark.conf import SparkConf
-from pyspark import SparkContext
+import sys
+
 from pyspark.sql import SparkSession
 
-from settings import DATA_FOLDER, SPARK_CONFIGURE_INPUT, DB_HOST, DB_NAME
+# from settings import DATA_FOLDER, SPARK_CONFIGURE_OUTPUT, DB_HOST, DB_NAME
 
-SANITIZED_DATA_FILE_PATH = DATA_FOLDER / "sanitized_2014_Green_Taxi_Trip_Data.csv"
+SPARK_CONFIGURE_OUTPUT = "spark.mongodb.output.uri"
+
+# Database setting
+DB_HOST = "localhost:27017"
+DB_NAME = "taxi"
 DB_TABLE = "taxi_info"
 
 
@@ -25,13 +29,13 @@ def write_df_to_mongodb(df):
     df.write.format("com.mongodb.spark.sql.DefaultSource").mode("append").save()
 
 
-def read_csv(spark):
+def read_csv(spark, csv_file):
     """
         Reads sanitized csv into spark dataframe
     :return: spark dataframe
     """
 
-    df = spark.read.csv(str(SANITIZED_DATA_FILE_PATH), header=True)
+    df = spark.read.csv(str(csv_file), header=True)
 
     return df
 
@@ -43,8 +47,8 @@ def configure_spark():
     """
     spark = SparkSession \
         .builder \
-        .appName("myApp") \
-        .config(SPARK_CONFIGURE_INPUT,
+        .appName("taxiApp") \
+        .config(SPARK_CONFIGURE_OUTPUT,
                 "mongodb://{}/{}.{}".format(DB_HOST, DB_NAME, DB_TABLE)) \
         .getOrCreate()
 
@@ -52,7 +56,11 @@ def configure_spark():
 
 
 if __name__ == '__main__':
-
+    # Configure Spark with mongodb configurations
     spark = configure_spark()
-    df = read_csv(spark)
-    write_df_to_mongodb(spark)
+    # take first argument as filename
+    input_file = sys.argv[1]
+    # Create a spark dataframe from the csv
+    df = read_csv(spark, input_file)
+    # Write dataframe to mongodb table
+    write_df_to_mongodb(df)
