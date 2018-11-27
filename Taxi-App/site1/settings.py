@@ -77,8 +77,8 @@ WSGI_APPLICATION = 'site1.wsgi.application'
 
 # Database setting
 DB_HOST = "localhost"
-DB_PORT = "27017"
-DB_NAME = "taxi"
+DB_PORT = 27017
+DB_NAME = "greentaxi"
 
 
 DATABASES = {

@@ -10,7 +10,7 @@ class Ride(models.Model):
     pickup_latitude = models.FloatField()
     dropoff_longitude = models.FloatField()
     dropoff_latitude = models.FloatField()
-    passenger_count = models.IntegerField(default=0)
+    passenger_count = models.IntegerField(default=1)
     trip_distance = models.FloatField()
     fare_amount = models.FloatField()
     tip_amount = models.FloatField()

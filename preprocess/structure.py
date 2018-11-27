@@ -2,8 +2,6 @@ import sys
 
 from pyspark.sql import SparkSession
 
-# from settings import DATA_FOLDER, SPARK_CONFIGURE_OUTPUT, DB_HOST, DB_NAME
-
 SPARK_CONFIGURE_OUTPUT = "spark.mongodb.output.uri"
 
 # Database setting
