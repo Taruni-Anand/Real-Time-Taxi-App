@@ -1,9 +1,13 @@
 # exclude all data files
 *.csv
+*.csv#
 
 # exculde pyc files
 *.pyc
 
 # exclude idea files
 .idea/
+
+# exclude venv
+venv/
 

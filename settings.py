@@ -12,5 +12,6 @@ DATA_FOLDER = Path("{}/data/".format(PROJECT_DIR))
 SPARK_CONFIGURE_OUTPUT = "spark.mongodb.output.uri"
 
 # Database setting
-DB_HOST = "localhost:27017"
+DB_HOST = "localhost"
+DB_PORT = "27017"
 DB_NAME = "taxi"
