@@ -25,7 +25,7 @@ SECRET_KEY = 's_r&eztlu#0cf@b#q(!*v$^iaxe1q#@9^%dk)+3$j9n8tyil3i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -75,10 +75,20 @@ WSGI_APPLICATION = 'site1.wsgi.application'
 # This requires an edit to be connected to kafka
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+# Database setting
+DB_HOST = "localhost"
+DB_PORT = "27017"
+DB_NAME = "taxi"
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'djongo',
+        'NAME': DB_NAME,
+        # 'USER': 'root',
+        # 'PASSWORD': 'root',
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
     }
 }
 
