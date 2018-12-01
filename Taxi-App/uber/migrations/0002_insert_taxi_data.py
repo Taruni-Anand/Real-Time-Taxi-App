@@ -34,7 +34,12 @@ def create_objects(apps, schema_editor):
                                   payment_type=int(row["Payment_type"])
                                   ))
 
-    taxi_model.objects.bulk_create(objects)
+        if len(objects) == 100:
+            taxi_model.objects.bulk_create(objects)
+            objects = []
+
+    if len(objects):
+        taxi_model.objects.bulk_create(objects)
 
 
 class Migration(migrations.Migration):
