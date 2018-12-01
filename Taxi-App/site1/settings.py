@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,6 +27,9 @@ SECRET_KEY = 's_r&eztlu#0cf@b#q(!*v$^iaxe1q#@9^%dk)+3$j9n8tyil3i'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+
+APP_PATH = os.path.join(BASE_DIR, 'uber/')
+DATA_FOLDER = Path("{}/data/".format(APP_PATH))
 
 
 # Application definition
