@@ -9,7 +9,7 @@ def RideProducer():
         Create a ride
     """
 
-    ride_obj = Ride.objects.create(vendorid=2,
+    ride_obj = Ride.objects.create(vendorid=18,
                                    pickup_datetime=datetime.datetime.now(),
                                    dropoff_datetime=datetime.datetime.now() + datetime.timedelta(minutes=15),
                                    rate_code=1,
@@ -23,11 +23,12 @@ def RideProducer():
                                    tip_amount=1,
                                    total_amount=11,
                                    payment_type=1)
+
     producer = Producer('ride', RideSerializer)
     producer.send(ride_obj)
 
 
-def RideConsumer():
-    consumer = Consumer('ride', consumer_timeout_ms=1000)
-    consumer.register(RideSerializer)
-    consumer.run()
+# def RideConsumer():
+#     consumer = Consumer('ride', consumer_timeout_ms=1000)
+#     consumer.register(RideSerializer)
+#     consumer.run()
