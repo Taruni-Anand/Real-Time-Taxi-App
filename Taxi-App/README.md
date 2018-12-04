@@ -1,3 +1,7 @@
+#Green Taxi Application
+
+All the requirements have been written taking Ubuntu 16.04 as the OS
+
 ### Prerequisites
 1. Python 3.6
 2. Mongo DB
