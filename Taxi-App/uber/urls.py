@@ -7,4 +7,5 @@ urlpatterns = [
     # path('post/<int:pk>/', views.ride_detail, name='ride_detail'),
     path('ride/produce', views.produce_rides, name='produce_ride'),
     # path('ride/consume', views.consume_rides, name="consume_ride"),
+    url(r'', views.default_map, name="ride_map"),
 ]
