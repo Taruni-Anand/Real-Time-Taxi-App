@@ -14,6 +14,10 @@ def produce_rides(request):
     return HttpResponse('Success', status=200)
 
 
+def visualize(request):
+    return render(request, 'uber/index.html')
+
+
 # def consume_rides(request):
 #     RideConsumer()
 #     return HttpResponse('Success', status=200)
