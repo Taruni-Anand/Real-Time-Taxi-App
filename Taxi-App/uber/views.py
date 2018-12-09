@@ -13,9 +13,13 @@ def produce_rides(request):
     RideProducer()
     return HttpResponse('Success', status=200)
 
-
 def visualize(request):
     return render(request, 'uber/index.html')
+
+def default_map(request):
+    mapbox_access_token = 'pk.my_mapbox_access_token'
+    return render(request, 'default.html',
+                  {'mapbox_access_token': mapbox_access_token})
 
 
 # def consume_rides(request):
