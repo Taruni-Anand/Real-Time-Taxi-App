@@ -8,5 +8,5 @@ urlpatterns = [
     path('ride/produce', views.produce_rides, name='produce_ride'),
     path('ride/visualize', views.visualize, name='visualize_ride'),
     # path('ride/consume', views.consume_rides, name="consume_ride"),
-    url(r'', views.default_map, name="ride_map"),
+    # url(r'', views.default_map, name="ride_map"),
 ]

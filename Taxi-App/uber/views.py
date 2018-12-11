@@ -1,7 +1,9 @@
-from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
+import datetime
 
+from django.http import HttpResponse
+from django.shortcuts import render
+
+from .query import get_rides
 from .worker import RideProducer
 
 
@@ -15,13 +17,13 @@ def produce_rides(request):
 
 
 def visualize(request):
+    latitude = 40.71319580078125
+    longitude = -73.81006622314453
+    # 2014-01-01T03:25:07Z"
+    pickup_time = datetime.datetime(2014, 1, 1, 3, 25, 7)
+    rides = get_rides(0.02, 0.02, 10, latitude, longitude, pickup_time)
+    print(rides)
     return render(request, 'uber/ride_map.html')
-
-
-def default_map(request):
-    mapbox_access_token = 'pk.my_mapbox_access_token'
-    return render(request, 'default.html',
-                  {'mapbox_access_token': mapbox_access_token})
 
 
 # def consume_rides(request):
