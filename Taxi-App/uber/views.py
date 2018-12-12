@@ -1,5 +1,7 @@
 import datetime
+import json
 
+from django.core import serializers
 from django.http import HttpResponse
 from django.shortcuts import render
 
@@ -16,14 +18,21 @@ def produce_rides(request):
     return HttpResponse('Success', status=200)
 
 
-def visualize(request):
-    latitude = 40.71319580078125
-    longitude = -73.81006622314453
-    # 2014-01-01T03:25:07Z"
+def book_ride(request):
+    return render(request, 'uber/ride_map.html')
+
+
+def get_rides_nearby(request):
+    latitude = float(request.GET['latitude'])
+    longitude = float(request.GET['longitude'])
     pickup_time = datetime.datetime(2014, 1, 1, 3, 25, 7)
     rides = get_rides(0.02, 0.02, 10, latitude, longitude, pickup_time)
-    print(rides)
-    return render(request, 'uber/ride_map.html')
+    markers = serializers.serialize('json', rides)
+
+
+    # print(data)
+
+    return HttpResponse(markers, content_type='application/json')
 
 
 # def consume_rides(request):
