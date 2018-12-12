@@ -138,15 +138,17 @@ var dropoff_marker = {
     function setPickDropMarkers(map) {
         var pick_marker = new google.maps.Marker({
             position: pickup_marker,
-            map: map
+            map: map,
+            title: "source"
         });
 
         var drop_marker = new google.maps.Marker({
             position: dropoff_marker,
-            map: map
+            map: map,
+            title: "destination"
         });
 
-        map.panTo(pickup_marker);
+        map.setCenter(pickup_marker)
         map.setZoom(11);
     }
 
@@ -155,8 +157,8 @@ var dropoff_marker = {
         var pickup_time = new Date("2014-01-01T03:25:07Z");
 
 //        var pickup_location = {lat: rides.source.pickup_latitude, lng: rides.source.pickup_longitude};
-//        map.setCenter(pickup_location)
-        map.setZoom(13)
+        map.setCenter(pickup_marker);
+        map.setZoom(13);
 
         var markers = rides;
         for (i = 0; i < markers.length; i++) {
@@ -167,6 +169,12 @@ var dropoff_marker = {
             arrival = Math.abs(pickup_time.getMinutes() - time.getMinutes())
             var marker = new google.maps.Marker({
             position: new google.maps.LatLng(latitude, longitude),
+            icon: {
+                url: "https://cdn0.iconfinder.com/data/icons/car-with-sensor/100/Car_Location-512.png",
+//                anchor: new google.maps.Point(30, 30.26),
+                scaledSize: new google.maps.Size(50, 50),
+
+            },
             map: map
           });
         }

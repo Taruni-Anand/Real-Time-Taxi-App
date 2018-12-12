@@ -27,6 +27,7 @@ def get_rides_nearby(request):
     longitude = float(request.GET['longitude'])
     pickup_time = datetime.datetime(2014, 1, 1, 3, 25, 7)
     rides = get_rides(0.02, 0.02, 10, latitude, longitude, pickup_time)
+    print(rides)
     markers = serializers.serialize('json', rides)
 
 
