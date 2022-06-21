@@ -5,7 +5,7 @@ djangorestframework==3.9.0
 djongo==1.2.30
 kafka-python==1.4.4
 lru-dict==1.1.6
-numpy==1.15.4
+numpy==1.22.0
 pandas==0.23.4
 pathlib==1.0.1
 py4j==0.10.7
